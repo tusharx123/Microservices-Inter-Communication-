@@ -28,6 +28,13 @@ public class Users {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	
+	public Users(int user_id, String username, String email) {
+		super();
+		this.user_id = user_id;
+		this.username = username;
+		this.email = email;
+	}
 	@Override
 	public String toString() {
 		return "Users [user_id=" + user_id + ", username=" + username + ", email=" + email + "]";

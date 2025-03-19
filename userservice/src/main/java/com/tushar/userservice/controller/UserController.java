@@ -15,13 +15,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.tushar.userservice.entity.Users;
 import com.tushar.userservice.repository.UserRepository;
+import com.tushar.userservice.service.UserService;
 
 @RestController
 @RequestMapping("/users")
 public class UserController {
 	
 	@Autowired
-	private UserRepository repo;
+	private UserService service;
 	@Value("${server.port}")
 	private String port;
 	
@@ -30,19 +31,19 @@ public class UserController {
 	{
 		
 		System.out.println("Running on port: "+port);
-		return repo.findAll();
+		return service.getAllUsers();
 		
 	}
 	@PostMapping("/addUser")
 	public void addUser(@RequestBody Users user)
 	{
-		repo.save(user);
+		service.addUser(user);
 	}
 	@GetMapping("/getById/{user_id}")
 	public Users getById(@PathVariable int user_id)
 	{
 		System.out.println("Running on port: "+port);
-		return repo.findById(user_id).get();
+		return service.getUserById(user_id);
 		
 	}
 	
